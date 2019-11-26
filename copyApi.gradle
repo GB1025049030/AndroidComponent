@@ -1,0 +1,58 @@
+import com.android.utils.FileUtils
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.0'
+    }
+}
+
+task copyApiToJava(type: Copy) {
+    description 'copy api to componentservice'
+
+    FileUtils.deleteDirectoryContents(project.file("./componentservice/src/main/java/"))
+
+    def applicationModule = project.subprojects.find { p ->
+        (p.name == "app")
+    }
+
+    String components = (String) applicationModule.properties.get("debugComponent")
+    //遍历 Project所依赖的组件 中的全部.api文件以及自己组件中的api文件，然后复制到componentservice库中
+    println("------>  compilemodule is " + applicationModule)
+    println("------>  need copy component is ：【" + components + "】")
+    if (components == null || components.length() == 0) {
+        println("------>  no component need copy ")
+    } else {
+        //通过 逗号分隔 转换为组件名数组
+        String[] compileComponents = components.split(",")
+        if (compileComponents == null || compileComponents.length == 0) {
+            println("------>  no component need copy ")
+        } else {
+            //copy依赖的库的组件中的api
+            for (String str : compileComponents) {
+                println("------>  add component :【" + str + "】")
+                from "./${str}/src/main/java/"
+            }
+        }
+    }
+
+    //复制到 componentservice/src/main/java 目录中去
+    into "./componentservice/src/main/java/"
+
+    //排除所有的.java文件
+    exclude '**/*.java'
+    //包括所有的.api文件和ktapi文件
+    include '**/*.api'
+    include '**/*.ktapi'
+    includeEmptyDirs = false
+    //改名
+    rename { String fileName ->
+        println "------>  copy file :" + fileName
+        fileName.replace('.api', '.java')
+                .replace('.ktapi', '.kt')
+    }
+}

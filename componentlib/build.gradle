@@ -1,0 +1,51 @@
+apply plugin: 'com.android.library'
+
+
+android {
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
+
+    defaultConfig {
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [module: "ComponentLib"]
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+//    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+//        exclude group: 'com.android.support', module: 'support-annotations'
+//    })
+    testCompile deps.junit
+//    compile deps.support.v7.appcompat
+
+//    compile project(':router-annotation')
+    compile deps.jimu.router_anno
+    compile deps.gson
+
+    compile deps.report.anno
+//    annotationProcessor deps.report.compiler
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+
+    compile 'org.apache.commons:commons-lang3:3.4'
+    compile 'org.apache.commons:commons-collections4:4.1'
+}

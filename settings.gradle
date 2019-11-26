@@ -1,0 +1,38 @@
+def checkComponentServiceDir() {
+    def serviceDir = new File('./componentservice/src/main/java')
+    println "${serviceDir.path} is exists: ${serviceDir.exists()}"
+    if (!serviceDir.exists()) {
+        serviceDir.mkdir()
+    }
+}
+
+checkComponentServiceDir()
+
+include ':app', ':moudule_one', ':moudule_two', ':componentlib', ':componentservice', ':commonui', ':jetpack_component'
+rootProject.name='AndroidComponent'
+
+gradle.addBuildListener(new BuildListener() {
+    @Override
+    void buildStarted(Gradle gradle) {
+    }
+
+    @Override
+    void settingsEvaluated(Settings settings) {
+
+    }
+
+    @Override
+    void projectsLoaded(Gradle gradle) {
+    }
+
+    @Override
+    void projectsEvaluated(Gradle gradle) {
+
+    }
+
+    @Override
+    void buildFinished(BuildResult result) {
+    }
+})
+
+gradle.settingsEvaluated {}
