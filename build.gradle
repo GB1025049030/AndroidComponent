@@ -57,6 +57,7 @@ ext {
                     'compiler': 'osp.leobert.android:report-anno-compiler:1.0.0'
             ],
             recyclerview: 'androidx.recyclerview:recyclerview:1.0.0',
+            retrofit    : 'com.squareup.retrofit2:retrofit:2.6.2',
     ]
 }
 
