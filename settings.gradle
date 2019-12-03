@@ -8,7 +8,7 @@ def checkComponentServiceDir() {
 
 checkComponentServiceDir()
 
-include ':app', ':moudule_one', ':moudule_two', ':componentlib', ':componentservice', ':commonui', ':jetpack_component', ':baselib', ':annotation', ':annotation_complier'
+include ':app', ':moudule_one', ':moudule_two', ':componentlib', ':componentservice', ':commonui', ':jetpack_component', ':baselib', ':annotation-lib', ':annotation-processor', ':data'
 rootProject.name='AndroidComponent'
 
 gradle.addBuildListener(new BuildListener() {
