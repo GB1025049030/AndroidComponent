@@ -1,5 +1,6 @@
 package com.wangzhen.baselib.http
 
+import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.google.gson.Gson
 import com.wangzhen.baselib.http.service.GithubService
 import okhttp3.OkHttpClient
@@ -32,6 +33,7 @@ class ApiClient private constructor() {
 
     private fun createOkHttpClient(): OkHttpClient {
         val builder = OkHttpClient.Builder()
+            .addNetworkInterceptor(StethoInterceptor())
 
         return builder.build()
     }

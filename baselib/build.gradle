@@ -39,4 +39,7 @@ dependencies {
 
     api deps.retrofit
     api deps.gson
+    api project(':data')
+    api deps.stetho
+    api deps.stethoOkHttp
 }

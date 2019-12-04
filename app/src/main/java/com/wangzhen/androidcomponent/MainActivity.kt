@@ -1,15 +1,21 @@
 package com.wangzhen.androidcomponent
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.luojilab.component.componentlib.router.Router
+import com.wangzhen.baselib.http.ApiClient
+import com.wangzhen.data.github.RepoSearchResponse
 import com.wangzhen.moudule_one.api.service.OneRouterService
 import kotlinx.android.synthetic.main.activity_main.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.lang.reflect.InvocationTargetException
 
 class MainActivity : AppCompatActivity() {
-    var textView:TextView? = null
+    var textView: TextView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -19,6 +25,22 @@ class MainActivity : AppCompatActivity() {
             Router.getInstance().getService(OneRouterService::class.java).launchOneActivity(this)
         }
 
+        btSearch.setOnClickListener {
+            ApiClient.getInstance().githubService
+                .searchRepos("android")
+                .enqueue(object : Callback<RepoSearchResponse> {
+                    override fun onFailure(call: Call<RepoSearchResponse>, t: Throwable) {
+                        Log.e("1--", "failed")
+                    }
+
+                    override fun onResponse(
+                        call: Call<RepoSearchResponse>,
+                        response: Response<RepoSearchResponse>
+                    ) {
+                        Log.e("1--", "success")
+                    }
+                })
+        }
     }
 
     private fun bind() {
