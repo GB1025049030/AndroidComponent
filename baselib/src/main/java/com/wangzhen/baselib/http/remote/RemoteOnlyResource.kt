@@ -8,12 +8,19 @@ import androidx.lifecycle.LiveData
  * @author wangzhen
  * @version 1.0
  */
-abstract class RemoteOnlyResource<ResultType, ResponseType> : NetworkBoundResource<ResultType, ResponseType>(){
+abstract class RemoteOnlyResource<ResultType, ResponseType> :
+    NetworkBoundResource<ResultType, ResponseType>() {
     override fun saveResultToLocal(data: ResponseType) {
         // do nothing
     }
 
-    override fun loadFromLocal(): LiveData<ResultType>? {
+    override fun loadFromLocal(params: ResultType?): LiveData<ResponseType>? {
         return null
+    }
+
+    override fun startLoad(params: ResultType?, data: ResponseType?) {
+        if (shouldFetch(data)) {
+            fetchFromRemote(params)
+        }
     }
 }

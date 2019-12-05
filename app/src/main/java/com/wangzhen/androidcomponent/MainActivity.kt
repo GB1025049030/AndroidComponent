@@ -26,20 +26,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         btSearch.setOnClickListener {
-            ApiClient.getInstance().githubService
-                .searchRepos("android")
-                .enqueue(object : Callback<RepoSearchResponse> {
-                    override fun onFailure(call: Call<RepoSearchResponse>, t: Throwable) {
-                        Log.e("1--", "failed")
-                    }
 
-                    override fun onResponse(
-                        call: Call<RepoSearchResponse>,
-                        response: Response<RepoSearchResponse>
-                    ) {
-                        Log.e("1--", "success")
-                    }
-                })
         }
     }
 
