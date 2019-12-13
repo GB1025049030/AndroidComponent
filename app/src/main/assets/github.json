@@ -1,0 +1,33 @@
+{
+  "total_count": 1,
+  "incomplete_results": false,
+  "items": [
+    {
+      "id": 82128465,
+      "node_id": "MDEwOlJlcG9zaXRvcnk4MjEyODQ2NQ==",
+      "name": "Android",
+      "full_name": "open-android/Android",
+      "private": false,
+      "owner": {
+        "login": "open-android",
+        "id": 23095877,
+        "node_id": "MDQ6VXNlcjIzMDk1ODc3",
+        "avatar_url": "https://avatars2.githubusercontent.com/u/23095877?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/open-android",
+        "html_url": "https://github.com/open-android",
+        "followers_url": "https://api.github.com/users/open-android/followers",
+        "following_url": "https://api.github.com/users/open-android/following{/other_user}",
+        "gists_url": "https://api.github.com/users/open-android/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/open-android/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/open-android/subscriptions",
+        "organizations_url": "https://api.github.com/users/open-android/orgs",
+        "repos_url": "https://api.github.com/users/open-android/repos",
+        "events_url": "https://api.github.com/users/open-android/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/open-android/received_events",
+        "type": "User",
+        "site_admin": false
+      }
+    }
+  ]
+}

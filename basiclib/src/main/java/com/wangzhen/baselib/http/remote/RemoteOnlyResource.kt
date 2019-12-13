@@ -1,6 +1,7 @@
 package com.wangzhen.baselib.http.remote
 
 import androidx.lifecycle.LiveData
+import com.wangzhen.baselib.http.Resource
 
 /**
  * Description:只请求网络
@@ -20,6 +21,7 @@ abstract class RemoteOnlyResource<ResultType, ResponseType> :
 
     override fun startLoad(params: ResultType?, data: ResponseType?) {
         if (shouldFetch(data)) {
+            setValue(Resource.loading(null))
             fetchFromRemote(params)
         }
     }

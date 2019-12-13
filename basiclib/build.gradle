@@ -34,12 +34,15 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.core:core-ktx:1.0.2'
-    implementation deps.okhttp
     implementation deps.retrofitConverterGson
 
+    api deps.okhttp
     api deps.retrofit
     api deps.gson
-    api project(':data')
     api deps.stetho
     api deps.stethoOkHttp
+    api deps.recyclerview
+    api deps.lifecycleExtensions
+    api project(':commondata')
+
 }

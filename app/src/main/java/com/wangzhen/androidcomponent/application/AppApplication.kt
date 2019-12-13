@@ -1,7 +1,8 @@
 package com.wangzhen.androidcomponent.application
 
-import android.app.Application
 import com.facebook.stetho.Stetho
+import com.wangzhen.baselib.application.BaseApplication
+import com.wangzhen.baselib.application.GlobalApplication
 
 /**
  * Description:
@@ -9,9 +10,10 @@ import com.facebook.stetho.Stetho
  * @author wangzhen
  * @version 1.0
  */
-class AppApplication : Application() {
+class AppApplication : BaseApplication() {
     override fun onCreate() {
         super.onCreate()
+        GlobalApplication.initApplication(this)
         Stetho.initializeWithDefaults(this)
     }
 }

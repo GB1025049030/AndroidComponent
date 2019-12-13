@@ -12,7 +12,8 @@ import com.wangzhen.data.github.RepoSearchResponse
  * @author wangzhen
  * @version 1.0
  */
-class GithubViewModel constructor(private val repository: GithubRepository) : ViewModel() {
+class GithubViewModel : ViewModel() {
+    private val repository: GithubRepository = GithubRepository()
     val reposLiveData: LiveData<Resource<RepoSearchResponse>> = repository.getSearchLiveData()
 
     fun startSearch(query: String) {

@@ -11,11 +11,11 @@
             <option value="$PROJECT_DIR$/annotation-lib" />
             <option value="$PROJECT_DIR$/annotation-processor" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/baselib" />
+            <option value="$PROJECT_DIR$/basiclib" />
+            <option value="$PROJECT_DIR$/commondata" />
             <option value="$PROJECT_DIR$/commonui" />
             <option value="$PROJECT_DIR$/componentlib" />
             <option value="$PROJECT_DIR$/componentservice" />
-            <option value="$PROJECT_DIR$/data" />
             <option value="$PROJECT_DIR$/jetpack_component" />
             <option value="$PROJECT_DIR$/moudule_one" />
             <option value="$PROJECT_DIR$/moudule_two" />

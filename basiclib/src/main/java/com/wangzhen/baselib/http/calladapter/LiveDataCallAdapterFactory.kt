@@ -32,7 +32,7 @@ class LiveDataCallAdapterFactory : CallAdapter.Factory() {
             throw IllegalArgumentException("type must be a resource")
         }
 
-        val bodyType = CallAdapter.Factory.getParameterUpperBound(0, observableType)
+        val bodyType = getParameterUpperBound(0, observableType)
         return LiveDataCallAdapter<Any>(bodyType)
     }
 }

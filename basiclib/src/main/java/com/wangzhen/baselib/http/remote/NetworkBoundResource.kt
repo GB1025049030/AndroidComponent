@@ -26,7 +26,7 @@ abstract class NetworkBoundResource<RequestParamsType, ResultType> {
     }
 
     @MainThread
-    private fun setValue(newValue: Resource<ResultType>) {
+    protected fun setValue(newValue: Resource<ResultType>) {
         if (result.value != newValue) {
             result.value = newValue
         }

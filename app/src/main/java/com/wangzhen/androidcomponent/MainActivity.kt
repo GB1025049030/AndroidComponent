@@ -4,18 +4,27 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.luojilab.component.componentlib.router.Router
-import com.wangzhen.baselib.http.ApiClient
+import com.wangzhen.androidcomponent.test.http.viewmodel.GithubViewModel
+import com.wangzhen.annotation_lib.BindView
+import com.wangzhen.baselib.http.ApiStatus
+import com.wangzhen.baselib.http.Resource
 import com.wangzhen.data.github.RepoSearchResponse
 import com.wangzhen.moudule_one.api.service.OneRouterService
 import kotlinx.android.synthetic.main.activity_main.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.lang.reflect.InvocationTargetException
 
 class MainActivity : AppCompatActivity() {
+    @BindView(value = R.id.tv_test)
     var textView: TextView? = null
+//    private val viewModel by lazy(LazyThreadSafetyMode.NONE) {
+//        ViewModelProviders.of(this).get(GithubViewModel::class.java)
+//    }
+
+    private var viewModel:GithubViewModel? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -26,8 +35,34 @@ class MainActivity : AppCompatActivity() {
         }
 
         btSearch.setOnClickListener {
-
+            viewModel?.startSearch("android")
         }
+
+        initViewModel()
+    }
+
+    private fun initViewModel() {
+        viewModel = ViewModelProviders.of(this).get(GithubViewModel::class.java)
+        viewModel?.reposLiveData?.observe(this,
+            Observer<Resource<RepoSearchResponse>> {
+                when (it.status) {
+                    ApiStatus.LOADING -> {
+                        Log.e("1---", "LOADING")
+                    }
+
+                    ApiStatus.LOCAL_SUCCESS -> {
+                        Log.e("1---", "LOCAL_SUCCESS,${it.data?.total}")
+                    }
+
+                    ApiStatus.REMOTE_SUCCESS -> {
+                        Log.e("1---", "REMOTE_SUCCESS,${it.data?.total}")
+                    }
+
+                    ApiStatus.ERROR -> {
+                        Log.e("1---", "loading")
+                    }
+                }
+            })
     }
 
     private fun bind() {
